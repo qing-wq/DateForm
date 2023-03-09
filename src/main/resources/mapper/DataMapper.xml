@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.whi.mapper.DataMapper">
+    <insert id="addData" parameterType="ink.whi.pojo.Data">
+        insert into `date-form`.data(title, `desc`, `begin-time`, `end-time`)
+            VALUES (#{title},#{desc},#{beginTime},#{endTime})
+    </insert>
+
+    <select id="selectData" resultMap="map">
+        select * from `date-form`.data where `end-time` >= #{currentTime}
+    </select>
+    <resultMap id="map" type="ink.whi.pojo.Data">
+        <result property="title" column="title"/>
+        <result property="desc" column="desc"/>
+        <result property="beginTime" column="begin-time"/>
+        <result property="endTime" column="end-time"/>
+    </resultMap>
+</mapper>
